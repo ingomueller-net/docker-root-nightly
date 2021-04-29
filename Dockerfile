@@ -2,8 +2,8 @@ FROM ubuntu:20.04 AS builder
 
 ENV LANG=C.UTF-8
 
-ARG ROOT_BRANCH=v6-24-00-patches
-ARG ROOT_REPO=root-project/root
+ARG ROOT_BRANCH=df_false_sharing
+ARG ROOT_REPO=eguiraud/root
 
 # Install requirements
 RUN apt-get update && \
