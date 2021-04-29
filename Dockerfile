@@ -26,6 +26,7 @@ RUN apt-get update && \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
+    wget -q "https://api.github.com/repos/root-project/root/commits?sha=${ROOT_BRANCH}&per_page=1" -O - && \
     wget --progress=dot:giga https://github.com/root-project/root/archive/refs/heads/${ROOT_BRANCH}.zip && \
     unzip ${ROOT_BRANCH}.zip && \
     rm ${ROOT_BRANCH}.zip && \
