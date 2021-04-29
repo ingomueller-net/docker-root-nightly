@@ -3,6 +3,7 @@ FROM ubuntu:20.04 AS builder
 ENV LANG=C.UTF-8
 
 ARG ROOT_BRANCH=v6-24-00-patches
+ARG ROOT_REPO=root-project/root
 
 # Install requirements
 RUN apt-get update && \
@@ -26,8 +27,8 @@ RUN apt-get update && \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
-    wget -q "https://api.github.com/repos/root-project/root/commits?sha=${ROOT_BRANCH}&per_page=1" -O - && \
-    wget --progress=dot:giga https://github.com/root-project/root/archive/refs/heads/${ROOT_BRANCH}.zip && \
+    wget -q "https://api.github.com/repos/${ROOT_REPO}/commits?sha=${ROOT_BRANCH}&per_page=1" -O - && \
+    wget --progress=dot:giga https://github.com/${ROOT_REPO}/archive/refs/heads/${ROOT_BRANCH}.zip && \
     unzip ${ROOT_BRANCH}.zip && \
     rm ${ROOT_BRANCH}.zip && \
     mkdir build && \
